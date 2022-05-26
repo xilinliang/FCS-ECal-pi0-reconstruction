@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Job parameters -->
+<job maxFilesPerProcess="1" filesPerHour="2">
+  <!-- <stdout discard="true"/> -->
+  <!-- Task list -->
+  <command>
+    stardev
+    root4star -b -q runMudst_pT.C\(\"$INPUTFILE0\",-1,1000000\)
+    mv StFcs*.root StFcsPi0invariantmass_pT&runnumber;_$JOBINDEX.root 
+  </command>
+
+  <!-- Necessary files -->
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/runMudst_pT.C</File>
+      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/.sl73_gcc485</File>
+      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/fcsgain.txt</File>
+      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/fcsgaincorr.txt</File>
+    </Package>
+  </SandBox>
+
+  <!-- Get input files from get_file_lis.pl -->
+  <input URL="filelist:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/submitScheduler/&runnumber;eventroot.list" />
+
+  <!-- Run log & error messages -->
+  <stdout discard="true" />
+  <stderr URL="file:/star/data05/pwg/liangxl/mywork/fcs_OO_Ecal/fcs/scheduler/$JOBID.err" />
+  <output fromScratch="StFcs*.root" toURL="file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/run22root/pT&runnumber;/"/>
+
+</job>
