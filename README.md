@@ -50,7 +50,9 @@ How to do the analysis on pi0 reconstruction:
 		
 		5.1) Go to submitScheduler/ folder, follow the instruction in submitScheduler/README.md
 
-		
+		5.2) Go to run22root/ folder, follow the instruction in run22root/README.md
+
+
 
 
 
