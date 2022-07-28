@@ -12,19 +12,19 @@
   <!-- Necessary files -->
   <SandBox installer="ZIP">
     <Package>
-      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/runMudst.C</File>
-      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/.sl73_gcc485</File>
-      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/fcsgain.txt</File>
-      <File>file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/fcsgaincorr.txt</File>
+      <File>file:[Current working folder]/runMudst.C</File>
+      <File>file:[Current working folder]/.sl73_gcc485</File>
+      <File>file:[Current working folder]/fcsgain.txt</File>
+      <File>file:[Current working folder]/fcsgaincorr.txt</File>
     </Package>
   </SandBox>
 
   <!-- Get input files from get_file_lis.pl -->
-  <input URL="filelist:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/submitScheduler/&runnumber;eventroot.list" />
+  <input URL="filelist:[Current working folder]/submitScheduler/&runnumber;eventroot.list" />
 
   <!-- Run log & error messages -->
   <stdout discard="true" />
-  <stderr URL="file:/star/data05/pwg/liangxl/mywork/fcs_OO_Ecal/fcs/scheduler/$JOBID.err" />
-  <output fromScratch="StFcs*.root" toURL="file:/star/data01/pwg/liangxl/mywork/fcs_OO_Ecal/fcs_fastoffline/run22root/&runnumber;/"/>
+  <stderr URL="file:[The folder you would like to save the log file]/&runnumber;_$JOBINDEX.err" />
+  <output fromScratch="StFcs*.root" toURL="file:[Current working folder]/run22root/&runnumber;/"/>
 
 </job>

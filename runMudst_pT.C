@@ -47,7 +47,7 @@ void runMudst_pT(char* file="st_cosmic_adc_22326042_raw_0000005.MuDst.root",
     
     StFcsDbMaker *fcsDbMkr= new StFcsDbMaker();
     StFcsDb* fcsDb = (StFcsDb*) chain->GetDataSet("fcsDb");
-    fcsDb->setReadGainFromText();
+    //fcsDb->setReadGainFromText();
     fcsDb->setReadGainCorrFromText();
     StEventMaker* eventMk = new StEventMaker();
     StFcsRawHitMaker* hit = new StFcsRawHitMaker();  
