@@ -237,7 +237,7 @@ void draw_all_towersmassfit2(const char* day, const char* iteration)
 
 	}	
 	c1->SaveAs("mass_by_tower_Ncluster.jpg");
-	statusN->SaveAs("statusN.root");
+	statusN->SaveAs(Form("statusN_iteration%s.root",iteration));
 	h2_gaincorrectionN->SaveAs("gaincorrectionN.root");
 	h2_masspeakN->SaveAs("masspeakN.root");
 	h2_Northgaincorrration->SaveAs("NorthGainCorrectionRatio.root");
@@ -379,7 +379,7 @@ void draw_all_towersmassfit2(const char* day, const char* iteration)
 
 	}	
 	c2->SaveAs("mass_by_tower_Scluster.jpg");
-	statusS->SaveAs("statusS.root");
+	statusS->SaveAs(Form("statusS_iteration%s.root",iteration));
 	h2_gaincorrectionS->SaveAs("gaincorrectionS.root");
 	h2_masspeakS->SaveAs("masspeakS.root");
 	h2_Southgaincorrration->SaveAs("SouthGainCorrectionRatio.root");
