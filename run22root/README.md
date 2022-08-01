@@ -14,6 +14,14 @@ Instruction on fit for each tower invariant mass
 
 4) Check the tower fit status plot for south and north ECal (statusN_iteration{$N}.root, and statusS_iteration{$N}.root) 
 
+	root -l statusN_iteration{$N}.root 
+
+	statusN->Draw("colz")
+
+	root -l statusS_iteration{$N}.root 
+
+	statusS->Draw("colz")
+
 	Status 5: good invariant mass peak : distance between invariant mass peak from fit and 𝜋^0 peak less than 0.0135 GeV, 10% difference
 
 	Status 4: distance between invariant mass peak from fit and 𝜋^0 peak 0.0135 GeV to 0.045 GeV. (not too far away, really need gain correction)
@@ -26,7 +34,7 @@ Instruction on fit for each tower invariant mass
 	
 	Status 0 (white): no entry.   
 
-	The ideal case for a good fit at pi0 invariant mass (0.135 GeV) will give you status 5 (red color in the status plot) 
+	The ideal case for a good fit at pi0 invariant mass (0.135 GeV) will give you status 5  
 
 	The towers close to beam (column < 5 ; 10 < row < 20) might have status 2 or 3 due to the radiation damage
 

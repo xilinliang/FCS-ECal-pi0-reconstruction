@@ -19,7 +19,7 @@ The framework contain:
 
 	4) fcsgain.txt : uniform gain factor file , no need to change
 	
-	5) fcsgain_corr.txt : gain correction file , varied by different towers. For each iteration, you will need to change this file before each iteration
+	5) fcsgain_corr.txt : gain correction file (not included in Git, check email or ask Xilin or Akio to provide), varied by different towers. For each iteration, you will need to change this file before each iteration
 	
 	6) submitScheduler: the folder for submitting jobs to Scheduler
 	
@@ -46,13 +46,13 @@ How to do the analysis on pi0 reconstruction:
 
 	4) You will be provided the fcsgaincorr.txt for the first iteration. Copy the corresponding fcsgaincorr.txt for the run numbers (for each pair, choose either one run number) to the main working folder. 
 
-	5) Then start the iteration:
+	5) Then start the iteration (repeat several times until you get the good invariant mass close to pi0 invariant mass):
 		
 		5.1) Go to submitScheduler/ folder, follow the instruction in submitScheduler/README.md
 
 		5.2) Go to run22root/ folder, follow the instruction in run22root/README.md
 
-
+	6) Finally save the final gain correction file fcsgaincorr_{$day}_{$N}.txt and fcsgaincorrOffline_{$day}_{$N}.txt . Akio will need the calibrated gain correction files. 
 
 
 
