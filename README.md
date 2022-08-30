@@ -17,13 +17,14 @@ The framework contain:
 
 	3) runMuDst_pT.C : run macro, include the pi0 reconstruction by highest pT pair
 
-	4) fcsgain.txt : uniform gain factor file , no need to change
-	
-	5) fcsgain_corr.txt : gain correction file (not included in Git, check email or ask Xilin or Akio to provide), varied by different towers. For each iteration, you will need to change this file before each iteration
+	5) fcsgain_corr.txt : gain correction file (in GitHub page, only the gain correction with 1.2 value, which only for the first iteration of the first pair of run for each period!). Generally, the values are varied by different towers. And for each iteration, you will need to change this file before each iteration
 	
 	6) submitScheduler: the folder for submitting jobs to Scheduler
 	
 	7) run22root : the folder for saving root files and analysis
+
+	8) Gain corrections predict scripts: include: integralLumi.txt , led_files2/ , ledRatio_time_V4.C , ledruns.txt , run_lumin.txt
+
 
 How to do the analysis on pi0 reconstruction:
 	
@@ -44,7 +45,7 @@ How to do the analysis on pi0 reconstruction:
 		 
 		 cons
 
-	4) You will be provided the fcsgaincorr.txt for the first iteration. Copy the corresponding fcsgaincorr.txt for the run numbers (for each pair, choose either one run number) to the main working folder. 
+	4) Start with the first pair of runs, you will use the fcsgaincorr.txt for the first iteration. Use the fcsgaincorr.txt from GitHub page for the first pair of run (for each pair, choose the first run number, for example: choose 23074017 for 23074017/23074018). 
 
 	5) Then start the iteration (repeat several times until you get the good invariant mass close to pi0 invariant mass):
 		
@@ -52,7 +53,20 @@ How to do the analysis on pi0 reconstruction:
 
 		5.2) Go to run22root/ folder, follow the instruction in run22root/README.md
 
-	6) Finally save the final gain correction file fcsgaincorr_{$day}_{$N}.txt and fcsgaincorrOffline_{$day}_{$N}.txt . Akio will need the calibrated gain correction files. 
+	6) Save the final gain correction file fcsgaincorr_{$day}_{$N}.txt and fcsgaincorrOffline_{$day}_{$N}.txt . Akio will need the calibrated gain correction files. 
 
+	7) Predict the initial gain correction files for the other pairs:
+
+		7.1) Create a file call "physicsrunlist.txt" and write down the first run number of each pair.
+
+		7.2) root4star -b -q ledRatio_time_V4.C'({$run},"{$gaincorrfile}")'
+
+		,where {$run} is the first run number of the first pair; {$gaincorrfile} is the final gain correction file (fcsgaincorr_{$day}_{$N}.txt) from step 6) for the first pair.
+
+		7.3) Then you will get fcsgaincorr_{$run}_ini.txt for the predicted initial gain correction files of each pair. 
+
+	8) Use the predicted gain correction files as the input file for each pair. Follow step 5) and 6) to do the invariant mass interation.
+	
+	Note: rename the fcsgaincorr_{$run}_ini.txt to fcsgaincorr.txt before you submit job!
 
 

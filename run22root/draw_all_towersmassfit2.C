@@ -202,7 +202,7 @@ void draw_all_towersmassfit2(const char* day, const char* iteration)
 			Double_t final_chi2ndf = 1.0*final_chi2/final_ndf;
 			chi2ndfN->Fill(col,-row,final_chi2ndf);
 
-			if ((final_chi2ndf>6)||(final_chi2ndf<0.166)||(final_sigma > 0.07)||(NorthTowerPeak[i]<0.06)||(NorthTowerPeak[i]>0.29)) {status = 2;NorthTowerPeak[i]=peakmass;}
+			if ((final_sigma > 0.07)||(NorthTowerPeak[i]<0.06)||(NorthTowerPeak[i]>0.29)) {status = 2;NorthTowerPeak[i]=peakmass;}
 			else
 			{
 				if ((max_bin < 13)||(max_bin > 21)) {status = 3;}
@@ -343,7 +343,7 @@ void draw_all_towersmassfit2(const char* day, const char* iteration)
 			Double_t final_chi2ndf = 1.0*final_chi2/final_ndf;
 			chi2ndfS->Fill(-col,-row,final_chi2ndf);
 
-			if ((final_chi2ndf>6)||(final_chi2ndf<0.166)||(final_sigma > 0.07)||(SouthTowerPeak[i]<0.06)||(SouthTowerPeak[i]>0.29)) {status = 2;SouthTowerPeak[i]=peakmass;}
+			if ((final_sigma > 0.07)||(SouthTowerPeak[i]<0.06)||(SouthTowerPeak[i]>0.29)) {status = 2;SouthTowerPeak[i]=peakmass;}
 			else
 			{
 				if ((max_bin < 13)||(max_bin > 21)) {status = 3;}

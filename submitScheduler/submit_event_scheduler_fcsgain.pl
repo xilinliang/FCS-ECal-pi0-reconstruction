@@ -2,7 +2,7 @@
 ###use strict;
 ###use warnings;
 
-my $folder=""; #Please write down the path of your working folder here
+my $folder="[Current working folder]"; #Please write down the path of your working folder here
 my $run = "23074018"; #Please write the run number here! 
 my $day = substr($run,2,3);
 my $yy = substr($run,0,2);
@@ -21,6 +21,9 @@ print "$mudstroot \n";
 
 my $pi0root="$folder/run22root/$run/";
 if (not -d $pi0root) {mkdir $pi0root or die "can not mkdir $eventroot \n";}
+
+my $outroot = "$pi0root/StFcsPi0invariantmass$run"."_*.root";
+system("rm $outroot");
 
 my $filelist="$folder/submitScheduler/$run"."eventroot.list";
 if (-f $filelist) {system("rm $filelist");}

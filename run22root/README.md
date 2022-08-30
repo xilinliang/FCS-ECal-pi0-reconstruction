@@ -28,7 +28,7 @@ Instruction on fit for each tower invariant mass
 
 	Status 3: We can find invariant mass peak beyond region of status 4&5 define. If it has good invariant mass peak fitting around 𝜋^0 invariant mass, we still consider to calculate the gain correction
 
-	Status 2:bad fit result: 𝜒^2>6 𝑜𝑟𝜒^2<0.166 𝑜𝑟 𝑠𝑖𝑔𝑚𝑎>0.07 𝑜𝑟 𝑚𝑎𝑠𝑠<0.08 𝑜𝑟 𝑚𝑎𝑠𝑠>0.29 [𝐺𝑒𝑉]
+	Status 2:bad fit result: 𝑠𝑖𝑔𝑚𝑎>0.07 𝑜𝑟 𝑚𝑎𝑠𝑠<0.08 𝑜𝑟 𝑚𝑎𝑠𝑠>0.29 [𝐺𝑒𝑉]
 
 	Status 1: entries < 150.     
 	
