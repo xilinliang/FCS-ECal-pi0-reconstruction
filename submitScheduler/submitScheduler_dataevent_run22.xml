@@ -14,7 +14,6 @@
     <Package>
       <File>file:[Current working folder]/runMudst.C</File>
       <File>file:[Current working folder]/.sl73_gcc485</File>
-      <File>file:[Current working folder]/fcsgain.txt</File>
       <File>file:[Current working folder]/fcsgaincorr.txt</File>
     </Package>
   </SandBox>
