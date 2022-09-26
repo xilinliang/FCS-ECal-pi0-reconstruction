@@ -53,8 +53,9 @@ Int_t StFcsPi0FinderForEcal::Init() {
    }
 
    h1_num_entries = new TH1F("h1_num_entries", "# of entries", 10, 0, 10);
-   h1_inv_mass_cluster = new TH1F("h1_inv_mass_cluster", "invariant mass plot for FCS ECal cluster (vertex z 0)", bins, m_low, m_up);
-   h1_inv_mass_cluster->SetXTitle("invariant mass [GeV]");
+   h1_inv_mass_cluster = new TH1F("h1_inv_mass_cluster", "invariant mass plot for FCS ECal cluster", bins, m_low, m_up);
+   h1_inv_mass_cluster->SetXTitle("invariant mass [GeV/c^{2}]");
+   h1_inv_mass_cluster->SetYTitle("counts");
    h1_inv_mass_cluster_Vtpc= new TH1F("h1_inv_mass_cluster_Vtpc", "invariant mass plot for FCS ECal cluster (TPC vertex)", bins, m_low, m_up);
    h1_inv_mass_cluster_Vtpc->SetXTitle("invariant mass [GeV]");
    h1_inv_mass_cluster_Vbbc= new TH1F("h1_inv_mass_cluster_Vbbc", "invariant mass plot for FCS ECal cluster (BBC vertex)", bins, m_low, m_up);
