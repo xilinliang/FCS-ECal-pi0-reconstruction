@@ -5,6 +5,8 @@ Instruction on running schuduler job submit for pi0 reconstruction.
 
 1) For each iteration: 
 
+	 1.0) (For the second and further iteration) Before you start a new iteration, please make sure the previous iteration analysis is completed and the fcsgaincorr.txt is updated to the gain correction result from the previous calculation.
+
 	 1.1) open submit_event_scheduler_fcsgain.pl file , go to line 7 and change the run number to the one that you need.
 
 	 1.2) run command "perl submit_event_scheduler_fcsgain.pl" , wait until the scheduler submit is completed.

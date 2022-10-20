@@ -14,8 +14,7 @@ if ($yy eq $yy22) {print "$yy \n";
 if ($yy eq $yy23) {print "$yy \n";
 			$year = "2022";}
 print "year = $year \n";
-#my $mudstroot="";
-#my $mudstroot="/star/data101/TEMP/FCS/st_fwd*_$run"."_*.MuDst.root";
+my $mudstroot="/star/data1*/reco/production_pp500_2022/ReversedFullField/pp500_22_DEV_fcs/$year/$day/$run/st_fwd*.MuDst.root";
 print "$mudstroot \n";
 
 
