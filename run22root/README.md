@@ -4,9 +4,12 @@ Instruction on fit for each tower invariant mass
 
 1) Merge all the root files: 
 
+	./hadd_job.sh
+
+2) Put the final root file ({$run}/StFcsPi0invariantmassAll.root) under run22root/ folder, you need to rename the name so as they are not overwrite each other.
+
 	Merge all the root files for 2 runs into one final root file. The final root file must name under: StFcsPi0invariantmass{$day}testAll_iteration{$N}.root  where {$day} can be run day of the run , {$N} is number of iterations. Same as other step.
 
-2) Put the final root file under run22root/ folder
 
 3) Use the command below to fit for all tower invariant mass plot and get fit status: (Please keep the single and double quote symbols, and keep the variable that you set in step 1)
 
