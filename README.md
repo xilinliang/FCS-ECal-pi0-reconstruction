@@ -15,8 +15,6 @@ The framework contain:
 
 	2) runMuDst.C : run macro, include the pi0 reconstruction by highest energy pair
 
-	3) runMuDst_pT.C : run macro, include the pi0 reconstruction by highest pT pair
-
 	5) fcsgain_corr.txt : gain correction file (in GitHub page, only the gain correction with 1.2 value, which only for the first iteration of the first pair of run for each period!). Generally, the values are varied by different towers. And for each iteration, you will need to change this file before each iteration
 	
 	6) submitScheduler: the folder for submitting jobs to Scheduler
