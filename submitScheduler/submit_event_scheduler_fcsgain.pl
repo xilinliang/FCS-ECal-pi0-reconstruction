@@ -41,4 +41,4 @@ my $filelist="$folder/submitScheduler/$run"."eventroot.list";
 if (-f $filelist) {system("rm $filelist");}
 system("ls $mudstroot > $filelist");
 
-system("star-submit-template -template submitScheduler_dataevent_run22.xml -entities folder=$folder,runnumber=$run\n")==0 or die "sorry, unable to submit the jobs"
+system("star-submit-template -template submitScheduler_dataevent_run22.xml -entities folder=$folder,runnumber=$run\n")==0 or die "sorry, unable to submit the jobs")
