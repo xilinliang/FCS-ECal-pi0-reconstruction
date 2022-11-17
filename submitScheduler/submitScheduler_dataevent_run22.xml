@@ -12,18 +12,18 @@
   <!-- Necessary files -->
   <SandBox installer="ZIP">
     <Package>
-      <File>file:[Current working folder]/runMudst.C</File>
-      <File>file:[Current working folder]/.sl73_gcc485</File>
-      <File>file:[Current working folder]/fcsgaincorr.txt</File>
+      <File>file:/star/data01/pwg/bmagh001/FCS-ECal-pi0-reconstruction/runMudst.C</File>
+      <File>file:/star/data01/pwg/bmagh001/FCS-ECal-pi0-reconstruction/.sl73_gcc485</File>
+      <File>file:/star/data01/pwg/bmagh001/FCS-ECal-pi0-reconstruction/fcsgaincorr.txt</File>
     </Package>
   </SandBox>
 
   <!-- Get input files from get_file_lis.pl -->
-  <input URL="filelist:[Current working folder]/submitScheduler/&runnumber;eventroot.list" />
+  <input URL="filelist:/star/data01/pwg/bmagh001/FCS-ECal-pi0-reconstruction/submitScheduler/&runnumber;eventroot.list" />
 
   <!-- Run log & error messages -->
   <stdout discard="true" />
-  <stderr URL="file:[The folder you would like to save the log file]/&runnumber;_$JOBINDEX.err" />
-  <output fromScratch="StFcs*.root" toURL="file:[Current working folder]/run22root/&runnumber;/"/>
+  <stderr URL="file:/star/data01/pwg/bmagh001/FCS-ECal-pi0-reconstruction/error_log/&runnumber;_$JOBINDEX.err" />
+  <output fromScratch="StFcs*.root" toURL="file:/star/data01/pwg/bmagh001/FCS-ECal-pi0-reconstruction/run22root/&runnumber;/"/>
 
 </job>
