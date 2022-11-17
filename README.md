@@ -28,14 +28,7 @@ How to do the analysis on pi0 reconstruction:
 	
 	1) Make sure the files and folders are created and accessable
 
-	2) Complete the one-time set up on the scripts:
-		
-		2.1) Know the full path of the working folder , you can use "pwd" command to know.
-
-		2.2) Go to submitScheduler/ folder, then go through all the sctipts (.pl files and .xml files) , replace [Current working folder] with the full path of the working folder.
-
-		2.3) At submitScheduler/ folder, for both .xml files, at line 27, replace [The folder you would like to save the log file] with the exact full path of the folder that you want to save the run error log files.
-
+	2) Complete the one-time set up on the scripts (No needed anymore)
 	
 	3) Compile the library: (follow the command below at the main working folder (current folder))
 		 
