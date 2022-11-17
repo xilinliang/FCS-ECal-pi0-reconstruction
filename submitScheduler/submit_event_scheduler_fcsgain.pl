@@ -27,7 +27,10 @@ print "$mudstroot \n";
 
 
 my $pi0root="$folder/run22root/$run/";
-if (not -d $pi0root) {mkdir $pi0root or die "can not mkdir $eventroot \n";}
+if (not -d $pi0root) {mkdir $pi0root or die "can not mkdir $pi0root \n";}
+
+my $log="$folder/submitScheduler/log/";
+if (not -d $log) {mkdir $log or die "can not mkdir $log \n";}
 
 my $outroot = "$pi0root/StFcsPi0invariantmass$run"."_*.root";
 print "Remove all files in test folder $outroot (y/n):\n";
