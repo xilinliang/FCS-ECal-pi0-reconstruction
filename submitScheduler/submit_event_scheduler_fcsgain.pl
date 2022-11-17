@@ -1,8 +1,11 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use FindBin qw($Bin);
+use lib "$Bin/../lib";
 
-my $folder="/star/data01/pwg/bmagh001/FCS-ECal-pi0-reconstruction"; #Please write down the path of your working folder here
+my $folder="$Bin/.."; #Please write down the path of your working folder here
+print "$folder\n";
 my $run = "23081009"; #Please write the run number here! 
 my $day = substr($run,2,3);
 my $yy = substr($run,0,2);
@@ -23,13 +26,13 @@ my $pi0root="$folder/run22root/$run/";
 if (not -d $pi0root) {mkdir $pi0root or die "can not mkdir $pi0root \n";}
 
 my $outroot = "$pi0root/StFcsPi0invariantmass$run"."_*.root";
- print "Remove all files in test folder $outroot (Y/n):";
+ print "Remove all files in test folder $outroot (y/n):";
     my $input = <STDIN>; chomp $input;
-    if( $input eq "Y" ){system("/bin/rm $outroot") == 0 or die "Unable to remove files in '$outroot': $!";}
+    if( $input eq "y" ){system("/bin/rm $outroot") == 0 or "Unable to remove files in '$outroot': $! Directories are either empty or don't exist.";}
 #system("rm $outroot");
 
 my $filelist="$folder/submitScheduler/$run"."eventroot.list";
  if (-f $filelist) {system("rm $filelist");}
 system("ls $mudstroot > $filelist");
 
-	system("star-submit-template -template submitScheduler_dataevent_run22.xml -entities runnumber=$run\n")==0 or die "sorry"
+	system("star-submit-template -template submitScheduler_dataevent_run22.xml -entities folder=$folder,runnumber=$run\n")==0 or die "sorry loser"
