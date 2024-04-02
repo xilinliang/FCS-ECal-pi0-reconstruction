@@ -1,11 +1,12 @@
-//class StFcsPi0FinderForEcal_pT
+//class StFcsPi0FinderForEcal
 //author Xilin Liang
 //
 //critical plots for offline QA: h1_inv_mass_cluster , h1_two_cluster_energy_allcut , h1_dgg_cluster  , h2_cluster_dgg_vs_E1pE2
 //
+//Update 3/12/24: move the StFcsPi0FinderForEcal to StRoot , no dependent on StSpinPool , also comment out 2 unused head file
 //
 
-#include "StFcsPi0FinderForEcal_pT.h"
+#include "StFcsPi0FinderForEcal.h"
 
 #include "StEvent/StEnumerations.h"
 #include "StEvent/StEvent.h"
@@ -16,8 +17,8 @@
 #include "StFcsDbMaker/StFcsDbMaker.h"
 #include "StMessMgr.h"
 #include "StMuDSTMaker/COMMON/StMuTypes.hh"
-#include "StSpinPool/StFcsQaMaker/StFcsQaMaker.h"
-#include "StSpinPool/StFcsRawDaqReader/StFcsRawDaqReader.h"
+//#include "StSpinPool/StFcsQaMaker/StFcsQaMaker.h"
+//#include "StSpinPool/StFcsRawDaqReader/StFcsRawDaqReader.h"
 #include "StThreeVectorF.hh"
 #include "Stypes.h"
 #include "TBox.h"
@@ -34,17 +35,17 @@
 #include "TText.h"
 
 #ifndef SKIPDefImp
-ClassImp(StFcsPi0FinderForEcal_pT)
+ClassImp(StFcsPi0FinderForEcal)
 #endif
 
     //------------------------
-    StFcsPi0FinderForEcal_pT::StFcsPi0FinderForEcal_pT(const Char_t* name) : StMaker(name) {
+    StFcsPi0FinderForEcal::StFcsPi0FinderForEcal(const Char_t* name) : StMaker(name) {
 }
 
-StFcsPi0FinderForEcal_pT::~StFcsPi0FinderForEcal_pT() {}
+StFcsPi0FinderForEcal::~StFcsPi0FinderForEcal() {}
 
 //-----------------------
-Int_t StFcsPi0FinderForEcal_pT::Init() {
+Int_t StFcsPi0FinderForEcal::Init() {
    mFcsDb = static_cast<StFcsDb*>(GetDataSet("fcsDb"));
    if (!mFcsDb) {
       LOG_ERROR << "StFcsEventDisplay::InitRun Failed to get StFcsDbMaker" << endm;
@@ -52,22 +53,8 @@ Int_t StFcsPi0FinderForEcal_pT::Init() {
    }
 
    h1_num_entries = new TH1F("h1_num_entries", "# of entries", 10, 0, 10);
-   h1_inv_mass_cluster = new TH1F("h1_inv_mass_cluster", "invariant mass plot for FCS ECal cluster (vertex z 0, p_(T) max pair)", bins, m_low, m_up);
+   h1_inv_mass_cluster = new TH1F("h1_inv_mass_cluster", "invariant mass plot for FCS ECal cluster", bins, m_low, m_up);
    h1_inv_mass_cluster->SetXTitle("invariant mass [GeV]");
-   h1_inv_mass_cluster_allcom = new TH1F("h1_inv_mass_cluster_allcom", "invariant mass plot for FCS ECal cluster (vertex z 0, all possible pair)", bins, m_low, m_up);
-   h1_inv_mass_cluster_allcom->SetXTitle("invariant mass [GeV]");
-   h1_inv_mass_cluster_Vtpc= new TH1F("h1_inv_mass_cluster_Vtpc", "invariant mass plot for FCS ECal cluster (TPC vertex, p_(T) max pair)", bins, m_low, m_up);
-   h1_inv_mass_cluster_Vtpc->SetXTitle("invariant mass [GeV]");
-   h1_inv_mass_cluster_Vbbc= new TH1F("h1_inv_mass_cluster_Vbbc", "invariant mass plot for FCS ECal cluster (BBC vertex, p_(T) max pair)", bins, m_low, m_up);
-   h1_inv_mass_cluster_Vbbc->SetXTitle("invariant mass [GeV]");
-   h1_inv_mass_cluster_Vvpd= new TH1F("h1_inv_mass_cluster_Vvpd", "invariant mass plot for FCS ECal cluster (VPD vertex, p_(T) max pair)", bins, m_low, m_up);
-   h1_inv_mass_cluster_Vvpd->SetXTitle("invariant mass [GeV]");
-   h1_inv_mass_cluster_Vbbctpc= new TH1F("h1_inv_mass_cluster_Vbbctpc", "invariant mass plot for FCS ECal cluster (BBC vertex) with TPC vertex exist, p_(T) max pair", bins, m_low, m_up);
-   h1_inv_mass_cluster_Vbbctpc->SetXTitle("invariant mass [GeV]");
-   h1_inv_mass_cluster_Vvpdtpc= new TH1F("h1_inv_mass_cluster_Vvpdtpc", "invariant mass plot for FCS ECal cluster (VPD vertex) with TPC vertex exist, p_(T) max pair", bins, m_low, m_up);
-   h1_inv_mass_cluster_Vvpdtpc->SetXTitle("invariant mass [GeV]");
-   h1_inv_mass_cluster_Vz0tpc= new TH1F("h1_inv_mass_cluster_Vz0tpc", "invariant mass plot for FCS ECal cluster (vertex z=0) with TPC vertex exist", bins, m_low, m_up);
-   h1_inv_mass_cluster_Vz0tpc->SetXTitle("invariant mass [GeV]");
    h1_Zgg_cluster = new TH1F("h1_Zgg_cluster", "Zgg", bins, 0, .7);
    h1_Zgg_cluster->SetXTitle("Z_{gg}");
    h1_opening_angle_cluster = new TH1F("h1_opening_angle_cluster", "FCS ECal cluster pair opening angle", bins, 0, 0.1);
@@ -88,8 +75,6 @@ Int_t StFcsPi0FinderForEcal_pT::Init() {
    h1_nclu_good = new TH1I("h1_nclu_good", "number of good clusters", 50, 0, 50);
    h1_clu_nTowers = new TH1I("h1_clu_nTowers", "number of towers for cluster", 15, 0, 15);
    h1_clu_nTowers->SetXTitle("n Towers");
-   h1_two_cluster_pT_allcut = new TH1F("h1_two_cluster_pT_allcut", "2 clusters total p_{T} for FCS ECal", bins, 0, 20);
-   h1_two_cluster_pT_allcut->SetXTitle("p_{T1} + p_{T2} [GeV]");
 
    //point
    h1_inv_mass_point = new TH1F("h1_inv_mass_point", "invariant mass plot for FCS ECal point", bins, m_low, m_up);
@@ -114,10 +99,6 @@ Int_t StFcsPi0FinderForEcal_pT::Init() {
    h1_inv_mass_point_nocut = new TH1F("h1_inv_mass_point_nocut", "#pi^{0} invariant mass plot (no cut)", bins, m_low, m_up);
    h1_inv_mass_point_nocut->SetXTitle("#pi^{0} invariant mass [GeV]");
    h1_npoi_good = new TH1I("h1_npoi_good", "number of good points", 50, 0, 50);
-
-   h1_zVtpc = new TH1D("h1_zVtpc","vertex z from TPC;vertex z from TPC [cm]",100,-100,100);
-   h1_zVbbc = new TH1D("h1_zVbbc","vertex z from BBC;vertex z from BBC [cm]",100,-100,100);
-   h1_zVvpd = new TH1D("h1_zVvpd","vertex z from VPD;vertex z from VPD [cm]",100,-100,100);
 
    for (int i = 0; i < 748; i++) {
       char name_hist[50];
@@ -176,19 +157,12 @@ Int_t StFcsPi0FinderForEcal_pT::Init() {
 }
 
 //-----------------------
-Int_t StFcsPi0FinderForEcal_pT::Finish() {
+Int_t StFcsPi0FinderForEcal::Finish() {
    if (filename.length() == 0) return kStOk;
    const char* fn = filename.c_str();
    TFile MyFile(fn, "RECREATE");
    h1_num_entries->Write();
    h1_inv_mass_cluster->Write();
-   h1_inv_mass_cluster_allcom->Write();
-   h1_inv_mass_cluster_Vtpc->Write();
-   h1_inv_mass_cluster_Vbbc->Write();
-   h1_inv_mass_cluster_Vvpd->Write();
-   h1_inv_mass_cluster_Vz0tpc->Write();
-   h1_inv_mass_cluster_Vbbctpc->Write();
-   h1_inv_mass_cluster_Vvpdtpc->Write();
    h1_Zgg_cluster->Write();
    h1_opening_angle_cluster->Write();
    h1_each_cluster_energy->Write();
@@ -200,7 +174,6 @@ Int_t StFcsPi0FinderForEcal_pT::Finish() {
    h1_nCluster->Write();
    h1_nclu_good->Write();
    h1_clu_nTowers->Write();
-   h1_two_cluster_pT_allcut->Write();
 
    h1_num_entries->Write();
    h1_inv_mass_point->Write();
@@ -215,10 +188,6 @@ Int_t StFcsPi0FinderForEcal_pT::Finish() {
    h1_inv_mass_point_nocut->Write();
    h1_nPoint->Write();
    h1_npoi_good->Write();
-
-  h1_zVtpc->Write();
-   h1_zVbbc->Write();
-   h1_zVvpd->Write();
 
    for (int i = 0; i < 748; i++) {
       h1list_mass_by_Ntower[i]->Write();
@@ -243,16 +212,16 @@ Int_t StFcsPi0FinderForEcal_pT::Finish() {
 }
 
 //----------------------
-Int_t StFcsPi0FinderForEcal_pT::Make() {
-   cout << "Start using StFcsPi0FinderForECal_pT" << endl;
+Int_t StFcsPi0FinderForEcal::Make() {
+   cout << "Start using StFcsPi0FinderForECal" << endl;
    StEvent* event = (StEvent*)GetInputDS("StEvent");
    if (!event) {
-      LOG_ERROR << "StFcsPi0FinderForEcal_pT::Make did not find StEvent" << endm;
+      LOG_ERROR << "StFcsPi0FinderForEcal::Make did not find StEvent" << endm;
       return kStErr;
    }
    mFcsColl = event->fcsCollection();
    if (!mFcsColl) {
-      LOG_ERROR << "StFcsPi0FinderForEcal_pT::Make did not find StEvent->StFcsCollection" << endm;
+      LOG_ERROR << "StFcsPi0FinderForEcal::Make did not find StEvent->StFcsCollection" << endm;
       return kStErr;
    }
 
@@ -261,38 +230,48 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
       cout << "current event:" << mNEvents << endl;
       if (mFilter == 1 && mFcsColl->numberOfHits(0) + mFcsColl->numberOfHits(1) + mFcsColl->numberOfHits(2) + mFcsColl->numberOfHits(3) == 0) return kStOK;
 
-//      //TOF mult cut                                                                                                     
+      //TOF mult cut                                                                                                     
       int tofMult = 0;
       const StTriggerData* trgdata = event->triggerData();
       if(!trgdata && StMuDst::event()) trgdata = StMuDst::event()->triggerData();
-//      if(trgdata){
-//	tofMult = trgdata->tofMultiplicity();
-//	LOG_DEBUG<<"TOF mult="<<tofMult<<endm;
-//	if (tofMult > 100) return kStOK;
-//      }else{
-//	LOG_WARN << "No TriggerData found in StEvent nor Mudst. No TOFMult cut"<<endm;
-//      }
+      if(trgdata){
+	tofMult = trgdata->tofMultiplicity();
+	LOG_DEBUG<<"TOF mult="<<tofMult<<endm;
+	if (tofMult > 100) return kStOK;
+      }else{
+	LOG_WARN << "No TriggerData found in StEvent nor Mudst. No TOFMult cut"<<endm;
+      }
 
-      //ZVERTEX
+      //TPC ZVERTEX
       float zTPC=-999.0;
       StPrimaryVertex* tpcvtx = event->primaryVertex();
       if(tpcvtx) {
 	zTPC=tpcvtx->position().z();
       }else{
-	StMuPrimaryVertex* mutpcvtx=StMuDst::primaryVertex();
-	if(mutpcvtx) zTPC=mutpcvtx->position().z();
+	if (StMuDst::numberOfPrimaryVertices() > 0){
+	  StMuPrimaryVertex* mutpcvtx=StMuDst::primaryVertex();
+	  if(mutpcvtx) zTPC=mutpcvtx->position().z();
+	}
       }
-      float zBBC=-999.0;
-      if(trgdata) zBBC = (4096 - trgdata->bbcTimeDifference())*0.016*30.0/2.0;
-	if(zBBC<-200 || zBBC>200) zBBC=-999.0;
 
-	float zVPD = -999.0;     
-	if(StMuDst::btofHeader()) zVPD=StMuDst::btofHeader()->vpdVz();
- 
-      LOG_INFO << Form("ZTPX = %6.2f ZBBC = %6.2f ZVPD= %6.2f",zTPC,zBBC,zVPD) << endm;
-	if (zBBC > -999) {h1_zVbbc->Fill(zBBC);}
-	if (zTPC > -999) {h1_zVtpc->Fill(zTPC);}
-	if (zVPD > -999) {h1_zVvpd->Fill(zTPC);}
+      //BBC ZVERTEX
+      float zBBC=-999.0;
+      if(trgdata) zBBC = (4096 - trgdata->bbcTimeDifference())*0.016*30.0/2.0;      
+      if(zBBC<-200 || zBBC>200) zBBC=-999;
+
+      //VPD ZVERTEX from MuDst(TOF data)
+      float zVPD=-999.0;
+      if(StMuDst::btofHeader()) zVPD=StMuDst::btofHeader()->vpdVz();
+
+      LOG_INFO << Form("ZTPX = %6.2f ZBBC = %6.2f ZVPD = %6.2f",zTPC,zBBC,zVPD) << endm;
+
+      //test getLorentzVector
+      StThreeVectorD xyz(20,0,720);     
+      StLorentzVectorD pbbc,ptpc,pvpd;
+      StLorentzVectorD p0 = mFcsDb->getLorentzVector((xyz), 10,    0);  LOG_INFO << "Zero " << p0 << endm;  	   
+      if(zBBC>-200) {pbbc  = mFcsDb->getLorentzVector((xyz), 10, zBBC);	LOG_INFO << "BBC  " << pbbc << endm;}
+      if(zTPC>-200) {ptpc  = mFcsDb->getLorentzVector((xyz), 10, zTPC);	LOG_INFO << "TPC  " << ptpc << endm;}
+      if(zVPD>-200) {pvpd  = mFcsDb->getLorentzVector((xyz), 10, zVPD); LOG_INFO << "VPD  " << pvpd << endm;}    
 
       mNAccepted++;
       int total_nc = 0;
@@ -308,14 +287,7 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
       int n_Ecal_cut = 0;
 
       float bestclu_invmass = -1;
-      float bestclu_invmass_Vtpc = -1;
-      float bestclu_invmass_Vbbc = -1;
-      float bestclu_invmass_Vvpd = -1;
-      float bestclu_invmass_Vz0tpc = -1;
-      float bestclu_invmass_Vbbctpc = -1;
-      float bestclu_invmass_Vvpdtpc = -1;
       float bestclu_totalE = -1;
-      float bestclu_totalpT = -1;
       float bestclu_dgg = -1;
       float bestclu_Zgg = -1;
       float bestclu_opening_angle = -1;
@@ -378,7 +350,7 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
             h2_cluster_position->Fill(cluPos_x, cluPos_y);
             h1_each_cluster_energy->Fill(clu_energy);
             StThreeVectorD xyz = mFcsDb->getStarXYZfromColumnRow(det, clu_x, clu_y);
-            StLorentzVectorD p = mFcsDb->getLorentzVector((xyz), clu_energy, 0);
+            StLorentzVectorD p = mFcsDb->getLorentzVector((xyz), clu_energy,    0);	   
             if (i == nc - 1) continue;
             for (int j = i + 1; j < nc; j++) {
                StFcsCluster* cluj = clusters[j];
@@ -437,8 +409,6 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
 
             StThreeVectorD xyz = mFcsDb->getStarXYZfromColumnRow(det, clu_x, clu_y);
             StLorentzVectorD p = mFcsDb->getLorentzVector((xyz), clu_energy, 0);
-		float clu_pT=p.perp();
-	    
             h2_cluster_position_cut->Fill(xyz.x(), xyz.y());
             for (int j = i + 1; j < nc; j++) {
                StFcsCluster* cluj = clusters[j];
@@ -451,51 +421,11 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
                float cluj_y = cluj->y();
                StThreeVectorD xyzj = mFcsDb->getStarXYZfromColumnRow(det, cluj_x, cluj_y);
                StLorentzVectorD pj = mFcsDb->getLorentzVector((xyzj), cluj_energy, 0);
-		float cluj_pT=pj.perp();
-		cout<<"total pT:"<<(clu_pT + cluj_pT)<<endl;
 
-		if ((clu_energy > 1.5)&&(cluj_energy > 1.5)) {h1_inv_mass_cluster_allcom->Fill((p + pj).m());}
-
-               //if ((clu_energy + cluj_energy) > bestclu_totalE) {
-               if ((clu_pT + cluj_pT) > bestclu_totalpT) {
+               if ((clu_energy + cluj_energy) > bestclu_totalE) {
                   check_fillclu = 1;
                   bestclu_invmass = ((p + pj).m());
-		  
-		  if (zTPC > -999) 
-		  {
-		  	StThreeVectorD xyzj_Vtpc = xyzj;
-		  	//xyzj_Vtpc.setZ(xyzjz-zTPC);
-			StLorentzVectorD pj_Vtpc = mFcsDb->getLorentzVector((xyzj_Vtpc), cluj_energy, zTPC);
-			cout<<"Vertex z for original cluster:"<<pj.z()<<endl;
-			cout<<"Vertex z for TPC vertex cluster:"<<pj_Vtpc.z()<<endl;
-		  	StThreeVectorD xyz_Vtpc = xyz;
-			//double xyzz = xyz_Vtpc.z();
-		  	//xyz_Vtpc.setZ(xyzz-zTPC);
-			StLorentzVectorD p_Vtpc = mFcsDb->getLorentzVector((xyz_Vtpc), clu_energy, zTPC);
-			bestclu_invmass_Vtpc = ((p_Vtpc + pj_Vtpc).m());
-			bestclu_invmass_Vz0tpc = bestclu_invmass;
-		  }
-		  if (zBBC > -999) 
-		  {
-		  	StThreeVectorD xyzj_Vbbc = xyzj;
-			StLorentzVectorD pj_Vbbc = mFcsDb->getLorentzVector((xyzj_Vbbc), cluj_energy, zBBC);
-		  	StThreeVectorD xyz_Vbbc = xyz;
-			StLorentzVectorD p_Vbbc = mFcsDb->getLorentzVector((xyz_Vbbc), clu_energy, zBBC);
-			bestclu_invmass_Vbbc = ((p_Vbbc + pj_Vbbc).m());
-			if (zTPC > -999) {bestclu_invmass_Vbbctpc = bestclu_invmass_Vbbc;}
-		  }
-		  if (zVPD > -999) 
-		  {
-		  	StThreeVectorD xyzj_Vvpd = xyzj;
-			StLorentzVectorD pj_Vvpd = mFcsDb->getLorentzVector((xyzj_Vvpd), cluj_energy, zVPD);
-		  	StThreeVectorD xyz_Vvpd = xyz;
-			StLorentzVectorD p_Vvpd = mFcsDb->getLorentzVector((xyz_Vvpd), clu_energy, zVPD);
-			bestclu_invmass_Vvpd = ((p_Vvpd + pj_Vvpd).m());
-			if (zTPC > -999) {bestclu_invmass_Vvpdtpc = bestclu_invmass_Vvpd;}
-		  }
-
                   bestclu_totalE = (clu_energy + cluj_energy);
-                  bestclu_totalpT = (clu_pT + cluj_pT);
                   bestclu_dgg = (sqrt((xyz[0] - xyzj[0]) * (xyz[0] - xyzj[0]) + (xyz[1] - xyzj[1]) * (xyz[1] - xyzj[1]) + (xyz[2] - xyzj[2]) * (xyz[2] - xyzj[2])));
                   bestclu_Zgg = fabs((clu_energy - cluj_energy) / (clu_energy + cluj_energy));
                   bestclu_opening_angle = acos((xyz[0] * xyzj[0] + xyz[1] * xyzj[1] + xyz[2] * xyzj[2]) / (sqrt(xyz[0] * xyz[0] + xyz[1] * xyz[1] + xyz[2] * xyz[2]) * sqrt(xyzj[0] * xyzj[0] + xyzj[1] * xyzj[1] + xyzj[2] * xyzj[2])));
@@ -563,7 +493,7 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
       h1_nclu_good->Fill(n_EcalClust_cut);
       h1_nPoint->Fill(total_np);
       h1_npoi_good->Fill(n_EcalPoint_cut);
-      //h2_EcalMult_vs_TofMult->Fill(tofMult, n_Ecal_cut);
+      h2_EcalMult_vs_TofMult->Fill(tofMult, n_Ecal_cut);
       if (n_Ecal_cut > 40) {
          return kStOK;
       }
@@ -575,7 +505,6 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
          h1_Zgg_cluster->Fill(bestclu_Zgg);
          h1_opening_angle_cluster->Fill(bestclu_opening_angle);
          h1_dgg_cluster->Fill(bestclu_dgg);
-	 h1_two_cluster_pT_allcut->Fill(bestclu_totalpT);
          h2_cluster_dgg_vs_E1pE2->Fill(bestclu_totalE, bestclu_dgg);
          if (best_tower_det_cluster == 0) {
             h1list_mass_by_Ntower[best_tower_id1_cluster]->Fill(bestclu_invmass);
@@ -585,13 +514,6 @@ Int_t StFcsPi0FinderForEcal_pT::Make() {
             h1list_mass_by_Stower[best_tower_id1_cluster]->Fill(bestclu_invmass);
             h1list_mass_by_Stower[best_tower_id2_cluster]->Fill(bestclu_invmass);
          }
-	if (bestclu_invmass_Vbbc > -1) {h1_inv_mass_cluster_Vbbc->Fill(bestclu_invmass_Vbbc);}
-	if (bestclu_invmass_Vtpc > -1) {h1_inv_mass_cluster_Vtpc->Fill(bestclu_invmass_Vtpc);}
-	if (bestclu_invmass_Vvpd > -1) {h1_inv_mass_cluster_Vvpd->Fill(bestclu_invmass_Vvpd);}
-	if (bestclu_invmass_Vbbctpc > -1) {h1_inv_mass_cluster_Vbbctpc->Fill(bestclu_invmass_Vbbctpc);}
-	if (bestclu_invmass_Vz0tpc > -1) {h1_inv_mass_cluster_Vz0tpc->Fill(bestclu_invmass_Vz0tpc);}
-	if (bestclu_invmass_Vvpdtpc > -1) {h1_inv_mass_cluster_Vvpdtpc->Fill(bestclu_invmass_Vvpdtpc);}
-
       }
 
       if (check_fillpnt == 1) {

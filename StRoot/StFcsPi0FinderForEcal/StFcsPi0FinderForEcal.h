@@ -37,12 +37,6 @@ class StFcsPi0FinderForEcal : public StMaker {
    StFcsCollection* mFcsColl = 0;
    TH1F* h1_num_entries = 0;                //h1_num_entries:# of entries
    TH1F* h1_inv_mass_cluster = 0;           //h1_inv_mass_cluster:invariant mass
-   TH1F* h1_inv_mass_cluster_Vtpc = 0;           //h1_inv_mass_cluster_Vtpc:invariant mass with TPC vertex
-   TH1F* h1_inv_mass_cluster_Vbbc = 0;           //h1_inv_mass_cluster_Vbbc:invariant mass with BBC vertex
-   TH1F* h1_inv_mass_cluster_Vvpd = 0;           //h1_inv_mass_cluster_Vvpd:invariant mass with VPD vertex
-   TH1F* h1_inv_mass_cluster_Vz0tpc = 0;           //h1_inv_mass_cluster_Vz0tpc:invariant mass (vertex z = 0) with TPC vertex
-   TH1F* h1_inv_mass_cluster_Vbbctpc = 0;           //h1_inv_mass_cluster_Vbbctpc:invariant mass (BBC vertex) with TPC vertex
-   TH1F* h1_inv_mass_cluster_Vvpdtpc = 0;           //h1_inv_mass_cluster_Vvpdtpc:invariant mass (VPD vertex) with TPC vertex
    TH1F* h1_Zgg_cluster = 0;                //h1_Zgg:Zgg
    TH1F* h1_opening_angle_cluster = 0;      //h1_opening_angle:opening angle
    TH1F* h1_each_cluster_energy = 0;        //h1_each_cluster_energy:each cluster energy(no cut)
@@ -72,10 +66,6 @@ class StFcsPi0FinderForEcal : public StMaker {
    TH1I* h1_npoi_good = 0;                //h1_npoi_good: number of good points
    TH1F* h1_inv_mass_point_nocut = 0;     //h1_inv_mass_point:invariant mass no cut
 
-   TH1D* h1_zVtpc=0;			//h1_zVtpc: TPC vertex z
-   TH1D* h1_zVbbc=0;			//h1_zVbbc: BBC vertex z
-   TH1D* h1_zVvpd=0;			//h1_zVvpd: VPD vertex z
-
    TH2F* h2_EcalMult_vs_TofMult = 0;     //h2_EcalMult_vs_TofMult
    TH2F* h2_cluster_position = 0;        //h2_cluster_position
    TH2F* h2_cluster_position_cut = 0;    //h2_cluster_position_cut
@@ -91,7 +81,7 @@ class StFcsPi0FinderForEcal : public StMaker {
    int mFilter = 0;
    int mNEvents = -1;
    int mNAccepted = 0;
-   int mMaxEvents = 30000;
+   int mMaxEvents = 10000;
    int bins = 150;
    string filename;
    float m_low = 0;
