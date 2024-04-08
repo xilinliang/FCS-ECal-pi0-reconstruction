@@ -19,7 +19,7 @@ The framework contain:
 	
 	6) submitScheduler: the folder for submitting jobs to Scheduler
 	
-	7) run22root : the folder for saving root files and analysis
+	7) run22root / run23root: the folder for saving root files and analysis
 
 	8) Gain corrections predict scripts: include: integralLumi.txt , led_files2/ , ledRatio_time_V4.C , ledruns.txt , run_lumin.txt
 
