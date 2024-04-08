@@ -6,7 +6,7 @@ use lib "$Bin/../lib";
 
 my $folder="$Bin/.."; #Please write down the path of your working folder here
 print "$folder\n";
-my $run = "23081009"; #Please write the run number here! 
+my $run = "23087034"; #Please write the run number here! 
 my $day = substr($run,2,3);
 my $yy = substr($run,0,2);
 my $yy22 = "22";

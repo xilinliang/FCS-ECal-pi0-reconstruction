@@ -474,7 +474,9 @@ void ledRatio_time_V4(int good_gain=23074018, const char *inputgaincorrfile = "f
   LEDratio_slopeS = new TGraph(748,tower_id,slope_S);
   LEDratio_slopeS->SetName(Form("LEDratio_slopeS_period%d",period));
   LEDratio_slopeS->SetTitle(Form("LED Ratio linear fit slope (South ECal, period %d);tower id;slope",period));
-  LEDratio_slopeS->Write(); 
+  LEDratio_slopeS->Write();
+
+  delete mFcsDbMkr; 
   }
 //
 //  LEDratio_slopeDist = new TGraph(1496,dist,allslope);
