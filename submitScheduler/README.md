@@ -9,6 +9,8 @@ Instruction on running schuduler job submit for pi0 reconstruction.
 
 	 1.2) run command "perl submit_event_scheduler_fcsgain.pl" for the other run (run 22 only, since run23 test run and run 24 low lumin runs will automatic run all the files), follow the command and wait until the scheduler submit is completed.
 
+	 1.2) run command "perl submit_event_scheduler_fcsgain_run24.pl" for the other run (good for run 24 run#2522104[1,5,6], this version won't regenerate the file list), follow the command and wait until the scheduler submit is completed.
+
 ps: Depending on the fit result of each tower invariant mass, you might need about 2 or 3 iterations to get most of the tower invariant mass close to pi0 invariant mass.
 
 
