@@ -31,6 +31,7 @@ print "year = $year \n";
 my $mudstroot = "";
 if ($yy eq $yy23) {$mudstroot="/star/data1*/reco/production_pp500_2022/ReversedFullField/pp500_22_DEV_fcs/$year/$day/$run*/st_fwd*.MuDst.root";}
 if ($yy eq $yy24) {$mudstroot="/star/data1*/reco/production_AuAu_2023/ReversedFullField/P24ia_calib/$year/$day/$run*/st_fcs*MuDst.root";}
+if ($yy eq $yy25) {$mudstroot="/star/data*/reco/pp200_production_radial/ReversedFullField/dev_calib/$year/$day/$run*/st_fwd*MuDst.root";}
 print "$mudstroot \n";
 
 my $pi0root = "";
@@ -61,8 +62,8 @@ my $input = <STDIN>; chomp $input;
 if( $input eq "y" ){system("/bin/rm $outroot") == 0 or "Unable to remove files in '$outroot': $! Directories are either empty or don't exist.";}
 
 my $filelist="$folder/submitScheduler/$run"."eventroot.list";
-#if (-f $filelist) {system("rm $filelist");}
-#system("ls $mudstroot > $filelist");
+if (-f $filelist) {system("rm $filelist");}
+system("ls $mudstroot > $filelist");
 
 
 if ($yy eq $yy23)
