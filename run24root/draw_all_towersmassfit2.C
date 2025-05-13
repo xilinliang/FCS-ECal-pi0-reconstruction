@@ -236,11 +236,11 @@ void draw_all_towersmassfit2(const char* day, const char* iteration)
 		}
 
 	}	
-	c1->SaveAs("mass_by_tower_Ncluster.jpg");
+	c1->SaveAs(Form("mass_by_tower_Ncluster%s.jpg",iteration));
 	statusN->SaveAs(Form("statusN_iteration%s.root",iteration));
-	h2_gaincorrectionN->SaveAs("gaincorrectionN.root");
-	h2_masspeakN->SaveAs("masspeakN.root");
-	h2_Northgaincorrration->SaveAs("NorthGainCorrectionRatio.root");
+	h2_gaincorrectionN->SaveAs(Form("gaincorrectionN%s.root",iteration));
+	h2_masspeakN->SaveAs(Form("masspeakN%s.root",iteration));
+	h2_Northgaincorrration->SaveAs(Form("NorthGainCorrectionRatio%s.root",iteration));
 	chi2ndfN->SaveAs("Chi2NDFN.root");
 
 	for (int i=0; i<748; i=i+1)
@@ -378,11 +378,11 @@ void draw_all_towersmassfit2(const char* day, const char* iteration)
 		}
 
 	}	
-	c2->SaveAs("mass_by_tower_Scluster.jpg");
+	c2->SaveAs(Form("mass_by_tower_Scluster%s.jpg",iteration));
 	statusS->SaveAs(Form("statusS_iteration%s.root",iteration));
-	h2_gaincorrectionS->SaveAs("gaincorrectionS.root");
-	h2_masspeakS->SaveAs("masspeakS.root");
-	h2_Southgaincorrration->SaveAs("SouthGainCorrectionRatio.root");
+	h2_gaincorrectionS->SaveAs(Form("gaincorrectionS%s.root",iteration));
+	h2_masspeakS->SaveAs(Form("masspeakS%s.root",iteration));
+	h2_Southgaincorrration->SaveAs(Form("SouthGainCorrectionRatio%s.root",iteration));
 	chi2ndfS->SaveAs("Chi2NDFS.root");
 
 	for (ns=0; ns <2; ns=ns+1)
