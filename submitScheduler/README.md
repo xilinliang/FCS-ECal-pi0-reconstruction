@@ -5,9 +5,12 @@ Instruction on running schuduler job submit for pi0 reconstruction.
 
 	 1.0) (For the second and further iteration) Before you start a new iteration, please make sure the previous iteration analysis is completed and the fcsgaincorr.txt is updated to the gain correction result from the previous calculation.
 
-	 1.1) run command "perl submit_event_scheduler_fcsgain.pl" (for run22) if we do calibration for run23 test run run command "perl submit_event_scheduler_fcsgain_run23.pl"; 
+	 1.1) run command to submit job using STAR scheduler (Please submit the correct command depending on what runs you are calibrating!)
+	 	"perl submit_event_scheduler_fcsgain.pl" (for run22) 
+	 	if we do calibration for run23 test run run command "perl submit_event_scheduler_fcsgain_run23.pl"; 
 	 	(if we do calibration for run 24 low lumin runs run "perl submit_event_scheduler_fcsgain_run24lowlumin.pl" )
 	 	(if we do calibration for run 24 high lumin runs run "perl submit_event_scheduler_fcsgain_run24.pl" ) ,
+	 	(if we do calibration for run 25 runs run "perl submit_event_scheduler_fcsgain_run25.pl" ) ,
 		follow the command and wait until the scheduler submit is completed.
 
 		NOte: for run 22 and run 24 high lumin calibration runs, run this command for every single run that you are using for calibration

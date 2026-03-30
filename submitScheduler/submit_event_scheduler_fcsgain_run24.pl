@@ -17,6 +17,7 @@ my $yy22 = "22";
 my $yy23 = "23";
 my $yy24 = "24";
 my $yy25 = "25";
+my $yy26 = "26";
 my $year = "";
 chomp($yy);
 if ($yy eq $yy22) {print "$yy \n"; 
@@ -27,6 +28,8 @@ if ($yy eq $yy24) {print "$yy \n";
 			$year = "2023";}
 if ($yy eq $yy25) {print "$yy \n";
 			$year = "2024";}
+if ($yy eq $yy26) {print "$yy \n";
+			$year = "2025";}
 print "year = $year \n";
 my $mudstroot = "";
 if ($yy eq $yy23) {$mudstroot="/star/data1*/reco/production_pp500_2022/ReversedFullField/pp500_22_DEV_fcs/$year/$day/$run*/st_fwd*.MuDst.root";}
