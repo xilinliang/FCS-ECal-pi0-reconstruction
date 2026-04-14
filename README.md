@@ -46,7 +46,7 @@ How to do the analysis on pi0 reconstruction:
 
 	6) Save the final gain correction file fcsgaincorr_{$day}_{$N}.txt and fcsgaincorrOffline_{$day}_{$N}.txt . Akio will need the calibrated gain correction files. 
 
-	7) Predict the initial gain correction files for the other pairs (do NOT do this for run 24 high lumin pp runs until further notice):
+	7) Predict the initial gain correction files for the other pairs (do NOT do this for run 24 high lumin pp runs and run 25 AuAu runs until further notice):
 
 		7.1) Create a file call "physicsrunlist.txt" and write down the first run number of each pair.
 
@@ -56,7 +56,7 @@ How to do the analysis on pi0 reconstruction:
 
 		7.3) Then you will get fcsgaincorr_{$run}_ini.txt for the predicted initial gain correction files of each pair. 
 
-	8) Use the predicted gain correction files as the input file for each pair (for run 24 high lumin pp runs, use the final gain correction file from first set of runs). Follow step 5) and 6) to do the invariant mass interation.
+	8) Use the predicted gain correction files as the input file for each pair (for run 24 high lumin pp runs and run 25 AuAu runs, use the final gain correction file from first set of runs). Follow step 5) and 6) to do the invariant mass interation.
 	
 	Note: rename the fcsgaincorr_{$run}_ini.txt to fcsgaincorr.txt before you submit job!
 
